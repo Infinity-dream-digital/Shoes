@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SneakersShop - Vente de chaussures en ligne</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-[#BED3C3]">
+    <!-- Navigation -->
+    <nav class="bg-[#212E53] shadow-sm fixed top-0 left-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i data-feather="shopping-bag" class="h-8 w-8 text-white"></i>
+                    <span class="ml-2 text-xl font-bold text-white">SneakersShop</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="relative">
+                        <button id="cartButton" class="p-2 text-gray-600 hover:text-indigo-600">
+                            <i data-feather="shopping-cart"></i>
+                            <span id="cartCount" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+     <!-- Hero Section -->
+    <div class="text-white bg-cover h-80 bg-center" style="background-image: url('./shoes-5991675.jpg')">
+       <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+        </div>
+    </div>
+    <div class="text-center mb-12">
+            <h2 class="text-3xl mt-12 font-extrabold text-[#212E53] sm:text-3xl">
+                Bienvenue chez SneakersShop
+            </h2>
+            <p class="mt-1 max-w-xl mx-auto text-xl text-white sm:mt-4">
+                La référence des sneakers de qualités
+            </p>
+        </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Search Section -->
+        <div class=" mb-8" style="margin-top: -18px;">
+            <div class="relative">
+                <input type="text" id="searchInput" placeholder="Rechercher des chaussures..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                <button id="searchButton" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600">
+                    <i data-feather="search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div id="products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Products will be loaded here -->
+        </div>
+    </div>
+
+     <!-- How It Works Section -->
+    <div id="how-it-works" class=" py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-3xl font-extrabold text-center text-[#212E53] sm:text-3xl">
+                    Comment ça marche
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl  text-center text-white lg:mx-auto">
+                    Réservez votre résidence en 4 étapes simples
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-10 sm:grid-cols-3">
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#212E53] text-white mx-auto">
+                            <i data-feather="search"></i>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-lg font-medium text-white">1. Trouvez</h3>
+                            <p class="mt-2 text-base text-gray-50">
+                                Parcourez notre sélection de sneakers et trouvez celle qui vous correspond.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#212E53] text-white mx-auto">
+                            <i  data-feather="credit-card"></i>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-lg font-medium text-white">2. Payer votre avance</h3>
+                            <p class="mt-2 text-base text-gray-50">
+                                Afin de reserver votre sneakers, vous devez vous acquitez de la somme de 5.000 francs à payer par wave.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#212E53] text-white mx-auto">
+                            <i data-feather="calendar"></i>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-lg font-medium text-white">3. Réservez</h3>
+                            <p class="mt-2 text-base text-gray-50">
+                                Sélectionnez votre date de livraison et assurer vous de remplir toutes les cases du formulaire de commande, dans le cas contraire vos informations seront incomplètes et nous ne pourrons pas valider votre commande.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#212E53] text-white mx-auto">
+                            <i data-feather="key"></i>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-lg font-medium text-white">4. Profitez</h3>
+                            <p class="mt-2 text-base text-gray-50">
+                                Recevez vos sneakers et profitez.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Contact Section -->
+    <div id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-[#212E53] shadow rounded-lg overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="px-6 py-8 sm:px-10 sm:py-12">
+                    <h2 class="text-2xl font-bold text-white sm:text-3xl">Nous contacter</h2>
+                    <p class="mt-4 text-lg text-gray-500">
+                        Vous avez des questions ? Notre équipe est là pour vous aider.
+                    </p>
+                    <div class="mt-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i data-feather="mail" class="h-6 w-6 text-gray-500"></i>
+                            </div>
+                            <div class="ml-3 text-base text-gray-500">
+                                <p>SneakersShop@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-start">
+                            <div class="flex-shrink-0">
+                                <i data-feather="phone" class="h-6 w-6 text-gray-500"></i>
+                            </div>
+                            <div class="ml-3 text-base text-gray-500">
+                                <p>+225 0700000000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-[#BED3C3] px-6 py-8 sm:px-10 sm:py-12">
+                    <form id="messageform">
+                        <div class="grid grid-cols-1 gap-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-white">Nom complet</label>
+                                <input type="text" name="name" id="name" autocomplete="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div>
+                                <label for="telephone" class="block text-sm font-medium text-white">Téléphone</label>
+                                <input type="tel" name="telephone" id="telephone" autocomplete="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-white">Message</label>
+                                <textarea id="message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-[#0C0C0C] bg-white hover:bg-[#8203] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Envoyer le message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Footer -->
+    <footer class="bg-[#212E53]">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase">SneakersShop</h3>
+                    <div class="mt-4 space-y-4">
+                        <a href="#" class="text-base text-black hover:text-white">À propos</a>
+                        <a href="#" class="text-base text-black hover:text-white">Carrières</a>
+                        <a href="#" class="text-base text-black hover:text-white">Blog</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Assistance</h3>
+                    <div class="mt-4 space-y-4">
+                        <a href="#" class="text-base text-black hover:text-white">Centre d'aide</a>
+                        <a href="#" class="text-base text-black hover:text-white">Sécurité</a>
+                        <a href="#" class="text-base text-black hover:text-white">FAQ</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Communauté</h3>
+                    <div class="mt-4 space-y-4">
+                        <a href="#" class="text-base text-black hover:text-white">Diversité</a>
+                        <a href="#" class="text-base text-black hover:text-white">Accessibilité</a>
+                        <a href="#" class="text-base text-black hover:text-white">Associations</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-[#EEE6D8] tracking-wider uppercase">Légal</h3>
+                    <div class="mt-4 space-y-4">
+                        <a href="#" class="text-base text-black hover:text-white">Confidentialité</a>
+                        <a href="#" class="text-base text-black hover:text-white">Conditions</a>
+                        <a href="#" class="text-base text-black hover:text-white">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-[#EEE6D8] hover:text-gray-900">
+                        <i data-feather="facebook" class="h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-[#EEE6D8] hover:text-gray-900">
+                        <i data-feather="instagram" class="h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-[#EEE6D8] hover:text-gray-900">
+                        <i data-feather="twitter" class="h-6 w-6"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-[#EEE6D8] md:mt-0 md:order-1">
+                    &copy; 2025 SneakersShop. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cartSidebar" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-gray-900">Votre Panier</h2>
+                <button id="closeCart" class="text-gray-500 hover:text-gray-700">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            
+            <div id="cartItems" class="space-y-4">
+                <!-- Cart items will be added here -->
+                <p id="emptyCartMessage" class="text-gray-500 text-center py-8">Votre panier est vide</p>
+            </div>
+            
+            <div id="cartSummary" class="mt-8 border-t border-gray-200 pt-4 hidden">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Sous-total</span>
+                    <span id="subtotal" class="font-medium">€0.00</span>
+                </div>
+                <div class="flex justify-between mb-4">
+                    <span class="text-gray-600">Livraison</span>
+                    <span id="shipping" class="font-medium">€5.99</span>
+                </div>
+                <div class="flex justify-between text-lg font-bold">
+                    <span>Total</span>
+                    <span id="total">€5.99</span>
+                </div>
+                <button id="checkoutButton" class="mt-6 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Passer la commande
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-start">
+                        <div class="w-1/2 pr-4">
+                            <img id="modalImage" src="" alt="" class="w-full rounded-lg">
+                        </div>
+                        <div class="w-1/2">
+                            <h3 id="modalTitle" class="text-lg font-medium text-gray-900"></h3>
+                            <p id="modalPrice" class="text-xl font-bold text-indigo-600 mt-2"></p>
+                            <p id="modalDescription" class="text-gray-600 mt-2"></p>
+                            
+                            <div class="mt-4">
+                                <label for="sizeSelect" class="block text-sm font-medium text-gray-700">Pointure</label>
+                                <select id="sizeSelect" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="36">36</option>
+                                    <option value="37">37</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="44">44</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium text-gray-700">Couleur</label>
+                                <div id="colorOptions" class="mt-2 flex space-x-2">
+                                    <!-- Color options will be added here -->
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex items-center">
+                                <button id="addToCartModal" class="flex-1 bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Ajouter au panier
+                                </button>
+                            </div>
+                        </div>
+                        <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Nike Air Max 90",
+                price: 10000,
+                description: "Chaussure de sport légendaire avec amorti visible.",
+                image: "Air max 90.jpg",
+                colors: ["Noir", "Blanc", "Rouge"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"]
+            },
+            {
+                id: 2,
+                name: "Adidas Stan Smith",
+                price: 15000,
+                description: "Modèle iconique en cuir avec semelle en caoutchouc.",
+                image: "Stan smith.jpg",
+                colors: ["Blanc", "Vert", "Bleu"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44"]
+            },
+            {
+                id: 3,
+                name: "Puma Suede Classic",
+                price: 15000,
+                description: "Chaussure basse en daim avec semelle en caoutchouc.",
+                image: "puma.jpg",
+                colors: ["Noir", "Rouge", "Bleu"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43"]
+            },
+            {
+                id: 4,
+                name: "New Balance 574",
+                price: 20000,
+                description: "Chaussure de running rétro avec amorti ENCAP.",
+                image: "New balance.jpg",
+                colors: ["Gris", "Bleu", "Rose"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"]
+            },
+            {
+                id: 5,
+                name: "Converse Chuck Taylor All Star",
+                price: 5000,
+                description: "Baskets montantes en toile avec semelle en caoutchouc.",
+                image: "converse.jpg",
+                colors: ["Noir", "Blanc", "Rouge"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43"]
+            },
+            {
+                id: 6,
+                name: "Vans Old School",
+                price: 25000,
+                description: "Baskets basses en toile et daim avec bande latérale.",
+                image: "vans.jpg",
+                colors: ["Noir", "Blanc", "Bleu"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44"]
+            },
+            {
+                id: 7,
+                name: "Reebok Classic Leather",
+                price: 7000,
+                description: "Chaussure de sport intemporelle en cuir lisse.",
+                image: "reebook.jpg",
+                colors: ["Blanc", "Noir", "Beige"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"]
+            },
+            {
+                id: 8,
+                name: "Asics Gel-Lyte III",
+                price: 11000,
+                description: "Chaussure de running rétro avec technologie GEL.",
+                image: "asics.jpg",
+                colors: ["Noir", "Rouge", "Bleu"],
+                sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44"]
+            }
+        ];
+
+        // Cart state
+        let cart = [];
+
+        // DOM Elements
+        const productsContainer = document.getElementById('products');
+        const cartButton = document.getElementById('cartButton');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCartButton = document.getElementById('closeCart');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const cartSummary = document.getElementById('cartSummary');
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('total');
+        const checkoutButton = document.getElementById('checkoutButton');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const productModal = document.getElementById('productModal');
+        const closeModalButton = document.getElementById('closeModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDescription = document.getElementById('modalDescription');
+        const sizeSelect = document.getElementById('sizeSelect');
+        const colorOptions = document.getElementById('colorOptions');
+        const addToCartModal = document.getElementById('addToCartModal');
+        const cartCount = document.getElementById('cartCount');
+
+        // Current selected product for modal
+        let currentProduct = null;
+        let selectedColor = null;
+        let selectedSize = null;
+
+        // Initialize the app
+        function init() {
+            renderProducts();
+            setupEventListeners();
+            feather.replace();
+        }
+
+        // Render products to the page
+        function renderProducts(filteredProducts = products) {
+            productsContainer.innerHTML = '';
+            
+            filteredProducts.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out';
+                productElement.innerHTML = `
+                    <div class="relative h-64 w-full overflow-hidden cursor-pointer">
+                        <img class="h-full w-full object-cover" src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">${product.name}</h3>
+                        <p class="mt-1 text-indigo-600 font-bold">${product.price.toFixed(2)}CFA</p>
+                        <button data-product-id="${product.id}" class="mt-4 w-full py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 view-details-btn">
+                            Voir détails
+                        </button>
+                    </div>
+                `;
+                productsContainer.appendChild(productElement);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Cart toggle
+            cartButton.addEventListener('click', toggleCart);
+            closeCartButton.addEventListener('click', toggleCart);
+
+            // View product details
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('view-details-btn')) {
+                    const productId = parseInt(e.target.getAttribute('data-product-id'));
+                    openProductModal(productId);
+                }
+            });
+
+            // Close modal
+            closeModalButton.addEventListener('click', closeProductModal);
+
+            // Add to cart from modal
+            addToCartModal.addEventListener('click', addToCartFromModal);
+
+            // Search functionality
+            searchButton.addEventListener('click', searchProducts);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchProducts();
+                }
+            });
+
+            // Checkout
+            checkoutButton.addEventListener('click', checkout);
+        }
+
+        // Toggle cart sidebar
+        function toggleCart() {
+            cartSidebar.classList.toggle('translate-x-full');
+            cartSidebar.classList.toggle('translate-x-0');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        // Open product modal
+        function openProductModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            modalImage.src = currentProduct.image;
+            modalTitle.textContent = currentProduct.name;
+            modalPrice.textContent = `CFA${currentProduct.price.toFixed(2)}`;
+            modalDescription.textContent = currentProduct.description;
+
+            // Reset selections
+            selectedColor = null;
+            selectedSize = null;
+
+            // Clear previous color options
+            colorOptions.innerHTML = '';
+
+            // Add color options
+            currentProduct.colors.forEach(color => {
+                const colorButton = document.createElement('button');
+                colorButton.className = 'w-8 h-8 rounded-full border-2 border-transparent hover:border-indigo-500';
+                colorButton.style.backgroundColor = getColorValue(color);
+                colorButton.title = color;
+                colorButton.addEventListener('click', () => {
+                    document.querySelectorAll('#colorOptions button').forEach(btn => {
+                        btn.classList.remove('border-indigo-500');
+                        btn.classList.add('border-transparent');
+                    });
+                    colorButton.classList.add('border-indigo-500');
+                    colorButton.classList.remove('border-transparent');
+                    selectedColor = color;
+                });
+                colorOptions.appendChild(colorButton);
+            });
+
+            // Set first color as selected by default
+            if (currentProduct.colors.length > 0) {
+                selectedColor = currentProduct.colors[0];
+                colorOptions.firstChild.classList.add('border-indigo-500');
+                colorOptions.firstChild.classList.remove('border-transparent');
+            }
+
+            // Set first size as selected by default
+            if (currentProduct.sizes.length > 0) {
+                selectedSize = currentProduct.sizes[0];
+            }
+
+            productModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        // Close product modal
+        function closeProductModal() {
+            productModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Get color value for display
+        function getColorValue(color) {
+            const colors = {
+                'Noir': '#000000',
+                'Blanc': '#FFFFFF',
+                'Rouge': '#FF0000',
+                'Vert': '#00FF00',
+                'Bleu': '#0000FF',
+                'Rose': '#FFC0CB',
+                'Gris': '#808080',
+                'Beige': '#F5F5DC'
+            };
+            return colors[color] || '#CCCCCC';
+        }
+
+        // Add to cart from modal
+        function addToCartFromModal() {
+            if (!currentProduct) return;
+            
+            selectedSize = sizeSelect.value;
+
+            if (!selectedColor || !selectedSize) {
+                alert('Veuillez sélectionner une couleur et une pointure');
+                return;
+            }
+
+            const cartItem = {
+                id: currentProduct.id,
+                name: currentProduct.name,
+                price: currentProduct.price,
+                image: currentProduct.image,
+                color: selectedColor,
+                size: selectedSize,
+                quantity: 1
+            };
+
+            addToCart(cartItem);
+            closeProductModal();
+        }
+
+        // Add item to cart
+        function addToCart(item) {
+            // Check if item already exists in cart with same color and size
+            const existingItem = cart.find(i => 
+                i.id === item.id && 
+                i.color === item.color && 
+                i.size === item.size
+            );
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(item);
+            }
+
+            updateCart();
+        }
+
+        // Update cart display
+        function updateCart() {
+            // Update cart count
+            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = itemCount;
+
+            // Update cart items
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                cartSummary.classList.add('hidden');
+                return;
+            }
+
+            emptyCartMessage.classList.add('hidden');
+            
+            cart.forEach((item, index) => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item bg-gray-50 p-4 rounded-lg';
+                cartItemElement.innerHTML = `
+                    <div class="flex">
+                        <div class="flex-shrink-0 h-20 w-20">
+                            <img class="h-full w-full object-cover rounded-md" src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex justify-between">
+                                <h4 class="text-sm font-medium text-gray-900">${item.name}</h4>
+                                <button data-index="${index}" class="text-gray-500 hover:text-red-500 remove-item">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <p class="mt-1 text-sm text-gray-500">${item.color} / ${item.size}</p>
+                            <div class="mt-2 flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <button data-index="${index}" class="decrease-quantity text-gray-500 hover:text-indigo-600">
+                                        <i data-feather="minus" class="w-4 h-4"></i>
+                                    </button>
+                                    <span class="mx-2 text-sm">${item.quantity}</span>
+                                    <button data-index="${index}" class="increase-quantity text-gray-500 hover:text-indigo-600">
+                                        <i data-feather="plus" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-sm font-medium text-indigo-600">CFA${(item.price * item.quantity).toFixed(2)}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+
+            // Update cart summary
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const shipping = 5.99;
+            const total = subtotal + shipping;
+
+            subtotalElement.textContent = `CFA${subtotal.toFixed(2)}`;
+            totalElement.textContent = `CFA${total.toFixed(2)}`;
+
+            cartSummary.classList.remove('hidden');
+
+            // Add event listeners for quantity adjustments and removal
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCart();
+                });
+            });
+
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity -= 1;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    updateCart();
+                });
+            });
+
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart[index].quantity += 1;
+                    updateCart();
+                });
+            });
+
+            feather.replace();
+        }
+
+        // Search products
+        function searchProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            if (!searchTerm) {
+                renderProducts();
+                return;
+            }
+
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+
+            renderProducts(filteredProducts);
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide');
+                return;
+            }
+
+            alert('Commande passée avec succès! Montant total: ' + totalElement.textContent);
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
